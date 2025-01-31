@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Anki
+decks/
+*.apkg
+
+# PDF und extrahierte Texte
+lectures/
+extracted_text.txt
+*.pdf
+*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store 
