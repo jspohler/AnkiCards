@@ -1,63 +1,63 @@
 # AnkiCards Generator
 
-Ein Python-Tool zur automatischen Generierung von Anki-Karteikarten aus PDF-Dokumenten.
+A Python tool for automatically generating Anki flashcards from PDF documents.
 
 ## Features
 
-- Extraktion von Text aus PDF-Dateien mittels OCR
-- Unterstützung für deutsche Sprache
-- Generierung von Frage-Antwort-Paaren
-- Automatische Erstellung von Anki-Decks
-- Batch-Verarbeitung mehrerer PDFs
-- Benutzerfreundliche Kommandozeilen-Schnittstelle
+- Text extraction from PDF files using OCR
+- Support for multiple languages
+- Generation of question-answer pairs
+- Automatic creation of Anki decks
+- Batch processing of multiple PDFs
+- User-friendly command-line interface
 
 ## Installation
 
-1. Klone das Repository:
+1. Clone the repository:
 ```bash
-git clone https://github.com/[dein-username]/AnkiCards.git
+git clone https://github.com/jspohler/AnkiCards.git
 cd AnkiCards
 ```
 
-2. Erstelle eine virtuelle Umgebung und aktiviere sie:
+2. Create and activate a virtual environment:
 ```bash
 python -m venv venv
-source venv/bin/activate  # Unter Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Installiere die Abhängigkeiten:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Installiere Tesseract OCR:
-- Unter macOS: `brew install tesseract`
-- Unter Ubuntu: `sudo apt-get install tesseract-ocr`
-- Unter Windows: [Tesseract Download](https://github.com/UB-Mannheim/tesseract/wiki)
+4. Install Tesseract OCR:
+- On macOS: `brew install tesseract`
+- On Ubuntu: `sudo apt-get install tesseract-ocr`
+- On Windows: [Tesseract Download](https://github.com/UB-Mannheim/tesseract/wiki)
 
-## Verwendung
+## Usage
 
-### Einzelne PDF verarbeiten:
+### Process a single PDF:
 ```bash
-python generate_questions.py --pdf-file "vorlesung.pdf"
+python generate_questions.py --pdf-file "lecture.pdf"
 ```
 
-### Alle PDFs im lectures-Verzeichnis verarbeiten:
+### Process all PDFs in the lectures directory:
 ```bash
 python generate_questions.py --all
 ```
 
-### Verfügbare PDFs anzeigen:
+### List available PDFs:
 ```bash
 python generate_questions.py --list
 ```
 
-### Anki-Deck aus CSV erstellen:
+### Create Anki deck from CSV:
 ```bash
-python create_cards.py "fragen_antworten.csv" --deck-name "Mein Deck"
+python create_cards.py "questions_answers.csv" --deck-name "My Deck"
 ```
 
-## Projektstruktur
+## Project Structure
 
 ```
 AnkiCards/
@@ -65,11 +65,11 @@ AnkiCards/
 ├── requirements.txt
 ├── generate_questions.py
 ├── create_cards.py
-├── lectures/          # Verzeichnis für PDF-Dateien
-├── decks/            # Verzeichnis für generierte Anki-Decks
-└── venv/             # Virtuelle Python-Umgebung
+├── lectures/          # Directory for PDF files
+├── decks/            # Directory for generated Anki decks
+└── venv/             # Virtual Python environment
 ```
 
-## Lizenz
+## License
 
 MIT License 

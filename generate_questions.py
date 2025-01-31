@@ -5,7 +5,7 @@ import pytesseract
 import argparse
 import subprocess
 
-# Definiere wichtige Verzeichnisse
+# Define important directories
 LECTURES_DIR = "lectures"
 DECKS_DIR = "decks"
 os.makedirs(LECTURES_DIR, exist_ok=True)
@@ -13,120 +13,120 @@ os.makedirs(DECKS_DIR, exist_ok=True)
 
 def extract_text_from_pdf(pdf_path):
     """
-    Extrahiert Text aus einem PDF mittels OCR.
+    Extracts text from a PDF using OCR.
     
     Args:
-        pdf_path (str): Pfad zur PDF-Datei
+        pdf_path (str): Path to the PDF file
     
     Returns:
-        str: Extrahierter Text
+        str: Extracted text
     """
-    print(f"  - Konvertiere PDF zu Bildern...")
-    # Konvertiere PDF zu Bildern
+    print(f"  - Converting PDF to images...")
+    # Convert PDF to images
     images = convert_from_path(pdf_path)
     
-    print(f"  - Extrahiere Text aus {len(images)} Seiten...")
-    # Extrahiere Text aus jedem Bild
+    print(f"  - Extracting text from {len(images)} pages...")
+    # Extract text from each image
     text = ""
     for i, image in enumerate(images, 1):
-        print(f"    Verarbeite Seite {i}/{len(images)}...")
-        text += pytesseract.image_to_string(image, lang='deu') + "\n"
+        print(f"    Processing page {i}/{len(images)}...")
+        text += pytesseract.image_to_string(image) + "\n"
     
     return text
 
 def save_qa_pairs_to_csv(qa_pairs, output_file):
     """
-    Speichert Frage-Antwort-Paare in einer CSV-Datei.
+    Saves question-answer pairs to a CSV file.
     
     Args:
-        qa_pairs (list): Liste von Tupeln (Frage, Antwort)
-        output_file (str): Pfad zur Ausgabe-CSV-Datei
+        qa_pairs (list): List of tuples (question, answer)
+        output_file (str): Path to output CSV file
     """
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        writer.writerow(['Frage', 'Antwort'])
+        writer.writerow(['Question', 'Answer'])
         writer.writerows(qa_pairs)
 
 def process_pdf_to_anki(pdf_path, output_csv, deck_name):
     """
-    Verarbeitet eine PDF-Datei und erstellt Anki-Karten.
+    Processes a PDF file and creates Anki cards.
     
     Args:
-        pdf_path (str): Pfad zur PDF-Datei
-        output_csv (str): Pfad zur Ausgabe-CSV-Datei
-        deck_name (str): Name des Anki-Decks
+        pdf_path (str): Path to PDF file
+        output_csv (str): Path to output CSV file
+        deck_name (str): Name of the Anki deck
     """
     print("\n" + "="*80)
-    print(f"Verarbeite PDF: {os.path.basename(pdf_path)}")
+    print(f"Processing PDF: {os.path.basename(pdf_path)}")
     print("="*80)
     
-    # Extrahiere Text aus PDF
+    # Extract text from PDF
     try:
         text = extract_text_from_pdf(pdf_path)
-        print("  ✓ Text erfolgreich extrahiert")
+        print("  ✓ Text successfully extracted")
     except Exception as e:
-        print(f"  ✗ Fehler beim Extrahieren des Texts: {str(e)}")
+        print(f"  ✗ Error extracting text: {str(e)}")
         return
     
-    # Speichere den extrahierten Text temporär
+    # Save extracted text temporarily
     temp_file = "extracted_text.txt"
     try:
         with open(temp_file, "w", encoding="utf-8") as f:
             f.write(text)
-        print(f"  ✓ Text in {temp_file} gespeichert")
+        print(f"  ✓ Text saved to {temp_file}")
     except Exception as e:
-        print(f"  ✗ Fehler beim Speichern des Texts: {str(e)}")
+        print(f"  ✗ Error saving text: {str(e)}")
         return
     
     print(f"""
-NÄCHSTE SCHRITTE:
+NEXT STEPS:
 ----------------
-1. Öffne die Datei '{temp_file}'
-2. Kopiere den Inhalt
-3. Öffne einen neuen Chat mit der Cursor AI
-4. Gib folgenden Prompt ein:
+1. Open the file '{temp_file}'
+2. Copy the content
+3. Open a new chat with Cursor AI
+4. Enter the following prompt:
 
-Erstelle Frage-Antwort-Paare für Anki-Karteikarten aus dem folgenden Text.
-Die Fragen sollten alle wichtigen Konzepte und Kernthemen abdecken.
-Die Antworten sollten präzise und verständlich sein.
-Die Anzahl der Fragen sollte sich am Inhalt orientieren - erstelle so viele Fragen wie nötig, 
-um die wichtigen Konzepte abzudecken (es können mehr oder weniger als 20 sein).
-Formatiere die Ausgabe als CSV mit zwei Spalten (Frage, Antwort), eine Zeile pro Paar.
-Verwende Anführungszeichen für beide Spalten.
+Create question-answer pairs for Anki flashcards from the following text.
+The questions should cover all important concepts and core topics.
+The answers should be precise and understandable.
+The number of questions should be based on the content - create as many questions as needed
+to cover the important concepts (can be more or less than 20).
+Format the output as CSV with two columns (Question, Answer), one pair per line.
+Use quotation marks for both columns.
 
-[Füge hier den kopierten Text ein]
+[Paste the copied text here]
 
-5. Kopiere die generierten Frage-Antwort-Paare
-6. Speichere sie in der Datei '{output_csv}'
+5. Copy the generated question-answer pairs
+6. Save them in the file '{output_csv}'
 """)
 
-    # Warte auf Benutzereingabe, um fortzufahren
-    input("\nDrücke Enter, wenn du die Frage-Antwort-Paare in der CSV-Datei gespeichert hast...")
+    # Wait for user input to continue
+    input("\nPress Enter when you have saved the question-answer pairs in the CSV file...")
 
-    # Erstelle das Anki-Deck
-    print("\nErstelle Anki-Deck...")
+    # Create the Anki deck
+    print("\nCreating Anki deck...")
     try:
         subprocess.run(['python', 'create_cards.py', output_csv, '--deck-name', deck_name], check=True)
-        print(f"  ✓ Deck '{deck_name}' wurde erfolgreich erstellt!")
+        print(f"  ✓ Deck '{deck_name}' successfully created!")
     except subprocess.CalledProcessError as e:
-        print(f"  ✗ Fehler beim Erstellen des Decks: {str(e)}")
+        print(f"  ✗ Error creating deck: {str(e)}")
         return
 
 def process_all_pdfs():
-    """Verarbeitet alle PDFs im lectures Verzeichnis."""
+    """Processes all PDFs in the lectures directory."""
     pdfs = [f for f in os.listdir(LECTURES_DIR) if f.endswith('.pdf')]
     if not pdfs:
-        print("Keine PDF-Dateien im 'lectures' Verzeichnis gefunden.")
-        print(f"Bitte lege deine Vorlesungs-PDFs im Verzeichnis '{LECTURES_DIR}' ab.")
+        print("No PDF files found in 'lectures' directory.")
+        print(f"Please place your lecture PDFs in the '{LECTURES_DIR}' directory.")
         return
     
-    print(f"\nGefundene PDFs ({len(pdfs)}):")
+    print(f"\nFound PDFs ({len(pdfs)}):")
     for i, pdf in enumerate(pdfs, 1):
         print(f"{i}. {pdf}")
     
     total_pdfs = len(pdfs)
     for i, pdf_file in enumerate(pdfs, 1):
-        print(f"\nVerarbeite PDF {i}/{total_pdfs}")
+        print(f"\nProcessing PDF {i}/{total_pdfs}")
         pdf_path = os.path.join(LECTURES_DIR, pdf_file)
         pdf_basename = os.path.splitext(pdf_file)[0]
         output_csv = f"{pdf_basename}_qa.csv"
@@ -135,73 +135,73 @@ def process_all_pdfs():
         process_pdf_to_anki(pdf_path, output_csv, deck_name)
     
     print("\n" + "="*80)
-    print("Alle PDFs wurden verarbeitet!")
+    print("All PDFs have been processed!")
     print("="*80)
 
 def list_available_lectures():
-    """Zeigt alle verfügbaren PDF-Dateien im lectures Verzeichnis an."""
+    """Shows all available PDF files in the lectures directory."""
     pdfs = [f for f in os.listdir(LECTURES_DIR) if f.endswith('.pdf')]
     if not pdfs:
-        print("Keine PDF-Dateien im 'lectures' Verzeichnis gefunden.")
-        print(f"Bitte lege deine Vorlesungs-PDFs im Verzeichnis '{LECTURES_DIR}' ab.")
+        print("No PDF files found in 'lectures' directory.")
+        print(f"Please place your lecture PDFs in the '{LECTURES_DIR}' directory.")
         return
     
-    print("\nVerfügbare Vorlesungen:")
+    print("\nAvailable lectures:")
     for i, pdf in enumerate(pdfs, 1):
         print(f"{i}. {pdf}")
 
 if __name__ == '__main__':
-    # Erstelle den ArgumentParser
-    parser = argparse.ArgumentParser(description='Erstellt Anki-Karten aus PDF-Dateien.')
+    # Create ArgumentParser
+    parser = argparse.ArgumentParser(description='Creates Anki cards from PDF files.')
     parser.add_argument('--all', '-a', action='store_true',
-                      help='Verarbeitet alle PDFs im lectures Verzeichnis')
+                      help='Process all PDFs in lectures directory')
     parser.add_argument('--pdf-file', 
-                      help='Name der PDF-Datei im lectures Verzeichnis oder Pfad zur PDF-Datei')
+                      help='Name of PDF file in lectures directory or path to PDF file')
     parser.add_argument('--deck-name', '-n', 
-                      help='Name des Anki-Decks (Standard: basierend auf PDF-Namen)')
+                      help='Name of the Anki deck (default: based on PDF name)')
     parser.add_argument('--output-csv', '-o', 
-                      help='Name der Ausgabe-CSV-Datei (Standard: basierend auf PDF-Namen)')
+                      help='Name of output CSV file (default: based on PDF name)')
     parser.add_argument('--list', '-l', action='store_true',
-                      help='Zeigt alle verfügbaren PDF-Dateien im lectures Verzeichnis an')
+                      help='Show all available PDF files in lectures directory')
     
-    # Parse die Argumente
+    # Parse arguments
     args = parser.parse_args()
     
-    # Zeige verfügbare PDFs an, wenn --list Option verwendet wird
+    # Show available PDFs if --list option is used
     if args.list:
         list_available_lectures()
         exit()
     
-    # Verarbeite alle PDFs wenn --all Option verwendet wird
+    # Process all PDFs if --all option is used
     if args.all:
         process_all_pdfs()
         exit()
     
-    # Prüfe ob eine PDF-Datei angegeben wurde
+    # Check if a PDF file was specified
     if not args.pdf_file:
         parser.print_help()
         exit(1)
     
-    # Bestimme den vollständigen PDF-Pfad
+    # Determine full PDF path
     if os.path.isfile(args.pdf_file):
         pdf_path = args.pdf_file
     else:
         pdf_path = os.path.join(LECTURES_DIR, args.pdf_file)
         if not os.path.isfile(pdf_path):
-            print(f"Fehler: Die Datei '{args.pdf_file}' wurde nicht gefunden.")
-            print("\nVerfügbare PDFs im lectures Verzeichnis:")
+            print(f"Error: File '{args.pdf_file}' not found.")
+            print("\nAvailable PDFs in lectures directory:")
             list_available_lectures()
             exit(1)
     
-    # Wenn kein CSV-Name angegeben wurde, erstelle einen aus dem PDF-Namen
+    # If no CSV name was specified, create one from the PDF name
     if not args.output_csv:
         pdf_basename = os.path.splitext(os.path.basename(pdf_path))[0]
         args.output_csv = f"{pdf_basename}_qa.csv"
     
-    # Wenn kein Deck-Name angegeben wurde, erstelle einen aus dem PDF-Namen
+    # If no deck name was specified, create one from the PDF name
     if not args.deck_name:
         pdf_basename = os.path.splitext(os.path.basename(pdf_path))[0]
         args.deck_name = pdf_basename.replace('_', ' ').title()
     
-    # Verarbeite die PDF
+    # Process the PDF
     process_pdf_to_anki(pdf_path, args.output_csv, args.deck_name) 

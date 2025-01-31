@@ -4,20 +4,20 @@ import csv
 import os
 import argparse
 
-# Erstelle ein Anki Model (Template für die Karten)
+# Create an Anki Model (template for cards)
 model_id = random.randrange(1 << 30, 1 << 31)
 basic_model = genanki.Model(
     model_id,
     'Basic Model',
     fields=[
-        {'name': 'Fragen'},
-        {'name': 'Antworten'},
+        {'name': 'Question'},
+        {'name': 'Answer'},
     ],
     templates=[
         {
             'name': 'Card 1',
-            'qfmt': '{{Fragen}}',
-            'afmt': '{{FrontSide}}<hr id="answer">{{Antworten}}',
+            'qfmt': '{{Question}}',
+            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
         },
     ],
     css='''
@@ -33,43 +33,43 @@ basic_model = genanki.Model(
 
 def create_deck_from_csv(csv_file, deck_name):
     """
-    Erstellt ein Anki-Deck aus einer CSV-Datei.
+    Creates an Anki deck from a CSV file.
     
     Args:
-        csv_file (str): Pfad zur CSV-Datei
-        deck_name (str): Name des Decks
+        csv_file (str): Path to the CSV file
+        deck_name (str): Name of the deck
     """
-    # Erstelle eine zufällige Deck-ID
+    # Create a random deck ID
     deck_id = random.randrange(1 << 30, 1 << 31)
     deck = genanki.Deck(deck_id, deck_name)
     
-    # Lese die CSV-Datei
+    # Read the CSV file
     with open(csv_file, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             note = genanki.Note(
                 model=basic_model,
-                fields=[row['Fragen'], row['Antworten']]
+                fields=[row['Question'], row['Answer']]
             )
             deck.add_note(note)
     
-    # Erstelle den Ordner 'decks', falls er nicht existiert
+    # Create 'decks' directory if it doesn't exist
     os.makedirs('decks', exist_ok=True)
     
-    # Speichere das Deck als .apkg Datei im 'decks' Ordner
+    # Save the deck as .apkg file in the 'decks' folder
     output_path = os.path.join('decks', f'{deck_name}.apkg')
     genanki.Package(deck).write_to_file(output_path)
-    print(f"Deck wurde erstellt: {output_path}")
+    print(f"Deck created: {output_path}")
 
 if __name__ == '__main__':
-    # Erstelle den ArgumentParser
-    parser = argparse.ArgumentParser(description='Erstellt ein Anki-Deck aus einer CSV-Datei.')
-    parser.add_argument('csv_file', help='Pfad zur CSV-Datei mit den Frage-Antwort-Paaren')
-    parser.add_argument('--deck-name', '-n', default='Neues_Deck',
-                      help='Name des Anki-Decks (Standard: Neues_Deck)')
+    # Create ArgumentParser
+    parser = argparse.ArgumentParser(description='Creates an Anki deck from a CSV file.')
+    parser.add_argument('csv_file', help='Path to CSV file with question-answer pairs')
+    parser.add_argument('--deck-name', '-n', default='New_Deck',
+                      help='Name of the Anki deck (default: New_Deck)')
     
-    # Parse die Argumente
+    # Parse arguments
     args = parser.parse_args()
     
-    # Erstelle das Deck
+    # Create the deck
     create_deck_from_csv(args.csv_file, args.deck_name) 
