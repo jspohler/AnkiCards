@@ -1,0 +1,168 @@
+=== Original Text Length: 8625 ===
+
+=== Full Preprocessed Text ===
+Hochschule Bremen
+City University of Applied Sciences
+Hohere Mathematik fiir Informatiker:innen (HMINF)
+04 Differentialgleichungen
+Prof. Dr. Patrick Draheim
+SS HSB
+berblick Uber das Kapitel
+* Briuicke von der Technischen Mechanik und Motivation
+¢ Grundlagen: Differentialgleichungen
+¢ Rang, Implizit/Explizit, Homogen/Inhomogen
+¢ Vorgehensververfahren fiir das analytische Lésen
+¢« —Numerische Verfahren zum Losen von Differentialgleichungen
+¢« Wichtige Eigenschaften fiir das numerische Losen
+e Euler, Heun und Runge-Kutta
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 2
+Grundlagen von Differentialgleichungen
+as bisher geschah...
+¢« Modellierung von physikalisch-basierter Bewegung von Massepunkten (und spater auch starren K6rpern)
+e _,,. diese Modellierung kann ebenfalls Uber Differentialgleichungen dargestellt werden bzw. ist eine
+Differentialgleichung:
+d*x F=-G: =
+F=m:a=m qe
+d?r MM
+2 . .
+ee 2 dt? r2
+d?r om
+x= y"= F dt2 72
+We an . e
+ro=y =-G 72
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 4
+arum wollen wir Differentialgleichungen nutzen?
+Prazise Beschreibung von dynamischen Systemen, die sich mit der Zeit verandern
+Vorhersage des Verhaltens Uber die Zeit
+Analyse von Stabilitat und Gleichgewichtszustanden
+> Kontinuierliche Anderungen und Dynamik von Systemen anstatt statische algebraische Beziehungen!
+> Alle wesentlichen physikalischen Gesetze sind (seit Newton) in Differentialgleichung angegeben!
+> Denny=v:t+ 59° t? ist auch nur die Losung der DGL des freien Falls wenn wir annehmen, dass nur die
+Schwerkraft modelliert werden muss: = =-—
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025
+ifferentialgleichung
+Eine (gewohnliche) Differentialgleichung (DGL) ist eine Gleichung, die eine unbekannte Funktion und ihre Ableitungen
+enthalt:
+Allgemeine Form: F(t, y(t), y’(t), y(t), ...) = 0
+Anmerkung: I.d.R. wird Verhalten von Prozessen, Systemen o.d. Uber die Zeit auf Basis von DGL modelliert, daher
+Was ist der Unterschied von Differentialgleichungen zu ,,regularen“/bekannten Gleichungen? Die Unbekannte ist eine
+Funktion und keine Variable(n)
+HMINE, Prof. Dr. Patrick Draheim ©HSB Beispiel: Die Abkiihlung des Heifgetrdnkes 06.01.2025 6
+ifferentialgleichung — Explizit & Implizit
+¢ Eine Differentialgleichung (DGL) kann in expliziter oder impliziter Form angegeben werden:
+Implizit: F(t, y(t), y'(0), y(t), ..) = 0 bspw.: F(t y(), (0), yy") = t?y’ +y? =
+Explizit: y’ = 3t + 2y
+¢ Aus der expliziten Form lasst sich immer eine implizite Form umstellen
+e Aus der impliziten Form kann sich nur eine explizite Form umstellen lassen, wenn y‘ isoliert werden kann
+> Fir uns relevant: Explizite Form einer gewohnlichen Differentialgleichung
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 7
+ifferentialgleichung — Homogen & Inhomogen
+¢ — Ist nur die abhangige Variable und ihre Ableitungen vorhanden, so sprechen wir von einer homogenen DGL
+¢ Bei einer inhomogenen DGL ist eine Stérgroe zusatzlich gegeben
+> Homogene DGL beschreiben Systeme, die von ihrer inneren Struktur bestimmt werden, wie z.B. Schwingungen
+> Inhomogene DGL beschreiben Systeme die Reaktionen auf auRere Einfllisse beachten miissen
+* Beispiel einer homogenen DGL: y’ = —2y. Die Anderungsrate hangt nur von y selbst ab!
+* Eine inhomogene DGL hat die Form y’ = f (x, y) + g(x), Beispiel: y’ = —2y + 3 - sin(x). Die Anderungsrate hangt
+von y sowie dem unabhangigen Term 3 - sin(x) ab!
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 8
+ifferentialgleichung — Rang
+¢ Eine Differentialgleichung (DGL) besitzt immer einen Rang bzw. eine Ordnung
+¢ Der Rang gibt an, welche Ableitung der gesuchten Funktion y(t) die héchste in der Gleichung vorkommende ist
+* Explizite DGL: y"” = 3t + 2y besitzt den Rang 2
+* — [.d.R. finden wir analytische Lésungen fur nicht-lineare DGLs mit Rang > 2 nicht mehr, z.B. y’"” + y’” = y + 42 oder
+jedwede Anwendung von trigonometrischen Funktionen
+¢ Anmerkung: mit numerischen Verfahren ggf. auch problematisch aufgrund von Unstetigkeiten, Singularitaten, ...
+> Fur uns relevant: nicht-lineare DGLs mit Rang < 2 und lineare DGLs
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 9
+Analytisches Losen
+nfangswertprobleme (AWP)
+* Gegeben einer DGL y(t) beantwortet das Anfangswertproblem, welche Konfiguration die jeweilige Konstante(n)
+der Differentialgleichung annehmen
+> Ergebnis des Anfangswertproblems ist eine konkrete Ausgestaltung von y(t) ohne vorher notwendige Konstanten
+* Kann y(x) analytisch nicht hergeleitet werden, so muss (auch) das AWP numerisch geldst werden
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 11
+nsere Auswahl) Analytische Losungsansatze
+¢ Substitutionsverfahren
+¢ Vereinfachung der DGL Uber eine geeignete Substitution v(t) = ... geeignete Ableitung von y(t)
+¢ Trennungsverfahren
+¢ DGLder Form on = f(y) - g(t), so dass umgeformt werden kann: aly = g(t)dt
+¢ Integrationsverfahren mit Faktor
+¢ DGL der Form y'(t) + p(t)y(t) = q(t) wird ein Integrationsfaktor u(t) eingeftihrt um direkt integrieren zu
+kOnnen: ~ (uy) = w(t)q(t) via u(t) = ef POA
+Beispiele der Ansdtze
+06.01.2025
+HMINF, Prof. Dr. Patrick Draheim ©HSB
+Stetigkeit von Funktionen
+¢ Eine Funktion ist stetig, wenn sie keine Spriinge, Liicken oder Unstetigkeiten aufweist. Dies bedeutet, das ftir jede
+noch so kleine Anderung der Eingabe die Anderung der Ausgabe ebenfalls beliebig klein bleibt
+* Die Funktion f(x) ist also stetig an der Stelle x) wenn gilt: lim f(x) = f (xo)
+* Beispiel: f, (x) = x” fir die Stelle xp = 2:
+¢ Der tatsachliche Funktionswert ist fj (v9) = f,(2) = 4
+¢ Der Grenzwert der Funktion, wenn x gegen 2 lauft, ist ebenfalls 4: lim fix) =4
+¢ Gegenbeispiel: f2(x) = fs ’ sons fiir die Stellexy =1
+* Der tatsachliche Funktionswert ist f2(%9) = f2(1) = 3
+* Der Grenzwert der Funktion bewegt sich auf x? zu: lim fi(~) =1
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 13
+Satz von Peano
+Der Satz von Peano gibt an, ob fiir ein AWP eine Lésung existiert, in der , Nahe” eines
+gegebenen Punktes.
+Sei die DGL gegeben als:
+VO=fG&y), vo) =y¥o
+Falls:
+f(x,y) in einem Rechteck R = [tp — a,to + a] x [Yo — b, yo + db] stetig ist, dann existiert
+mindestens eine lokale Lésung y(x) in dem (Rechteck-)Intervall um ty
+Achtung: Der Satz von Peano sagt nichts tiber die Qualitdt der Losung aus! Das numerische
+Verfahren muss in der Lage sein, diese Losung auf stabile Weise zu berechnen
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 14
+Satz von Picard-Lindeloff
+Der Satz von Picard-Lindeloff erweitert den Satz von Peano um die Lipschitz Bedingung, sodass in
+dem Rechteck-Intervall nur eine mdgliche Losung existiert, da eine Veranderungsgrenze definiert
+Lipschitz-Stetigkeit / Lipschitz Bedingung:
+Formuliere eine strikte Anforderung an die Stetigkeit mit Beschrankung L
+Eine Funktion ist Lipschitz-stetig, wenn im
+Definitionsbereich gilt: || f(%) -f (x2)I| <L ||x, — x2||
+Achtung: Auch der Satz von Picard-Lindel6ff sagt nichts tiber die Qualitat der Losung aus! Das Priifung der Sdtze
+numerische Verfahren muss in der Lage sein, diese Losung auf stabile Weise zu berechnen
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 15
+Numerisches Lésen
+uler- und Heun-Verfahren
+Das Euler-Verfahren ist eine einfache und schnelle Methode zum numerischen L6sen von DGLs
+Das Euler-Verfahren hat eine geringe Genauigkeit, insbesondere bei grofen Schrittweiten, die
+mit der Anzahl der Schritte sich akkumuliert
+Yn+1 =In +h: f(t Yn)
+Yy: Die Approximation der Lésung zum Zeitpunkt t,
+h: Schrittweite und f (tn, Yn): DGL
+Das Heun-Verfahren verbessert die Qualitat das Euler-Verfahren, in dem es die mittlere Steigung
+der Schrittweite berechnet:
+ky = fGun)i ke = fn t+ yn +h- ky)
+Yn+1 = Yn + 2" (ky +k)
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 17
+unge-Kutta-Verfahren
+Das Runge-Kutta Verfahren (ins. 4. Ordnung — ,,RK4“) ist eine der genauesten und
+am haufigsten verwendeten Methoden ftir die numerische Losung von DGLs
+Berechnung der Losung durch eine gewichtete Mittelung von
+Steigerungsberechnungen pro Schritt:
+1 Yo+ hks
+ky = f (tr Yn)
+ky =f (t+ arynt
+NI > Ne] >
+ks =f (t+ ayn t
+Ky = f (tn + h, Yn + h . kz) Yo+ hk2/2
+Yo+hk,/2
+Ynt1 = Vn + git 2s ka +2: kg + ky)
+HMINF, Prof. Dr. Patrick Draheim ©HSB to to+h/2 to+h 06.01.2025 18
+Osungsverfahren im Vergleich
+Euler Yn+1 =Wn th: f (ta Yn) O(h) Niedrig Einfach Genauigkeit
+Heun 1 O(h?) Mittel Genauigkeit vs Euler = Rechenaufwand vs Euler
+Yne1 = Yn +5 (ka + ka) °
+Runge-Kutta O(h3) Hoch Genauigkeit vs Heun Rechenaufwand vs Heun
+Yn+1 = Yn +E" (ky + 2k2 + 2k3 + ky)
+Beispielrechnung & Die Verfahren in Python
+HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 19
+
+=== Chunk 1/2 (Length: 6591) ===
+Hochschule Bremen City University of Applied Sciences Hohere Mathematik fiir Informatiker:innen (HMINF) 04 Differentialgleichungen Prof. Dr. Patrick Draheim SS HSB berblick Uber das Kapitel * Briuicke von der Technischen Mechanik und Motivation ¢ Grundlagen: Differentialgleichungen ¢ Rang, Implizit/Explizit, Homogen/Inhomogen ¢ Vorgehensververfahren fiir das analytische Lésen ¢« —Numerische Verfahren zum Losen von Differentialgleichungen ¢« Wichtige Eigenschaften fiir das numerische Losen e Euler, Heun und Runge-Kutta HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 2 Grundlagen von Differentialgleichungen as bisher geschah... ¢« Modellierung von physikalisch-basierter Bewegung von Massepunkten (und spater auch starren K6rpern) e _,,. diese Modellierung kann ebenfalls Uber Differentialgleichungen dargestellt werden bzw. ist eine Differentialgleichung: d*x F=-G: = F=m:a=m qe d?r MM 2 . . ee 2 dt? r2 d?r om x= y"= F dt2 72 We an . e ro=y =-G 72 HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 4 arum wollen wir Differentialgleichungen nutzen? Prazise Beschreibung von dynamischen Systemen, die sich mit der Zeit verandern Vorhersage des Verhaltens Uber die Zeit Analyse von Stabilitat und Gleichgewichtszustanden > Kontinuierliche Anderungen und Dynamik von Systemen anstatt statische algebraische Beziehungen! > Alle wesentlichen physikalischen Gesetze sind (seit Newton) in Differentialgleichung angegeben! > Denny=v:t+ 59° t? ist auch nur die Losung der DGL des freien Falls wenn wir annehmen, dass nur die Schwerkraft modelliert werden muss: = =-— HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 ifferentialgleichung Eine (gewohnliche) Differentialgleichung (DGL) ist eine Gleichung, die eine unbekannte Funktion und ihre Ableitungen enthalt: Allgemeine Form: F(t, y(t), y’(t), y(t), ...) = 0 Anmerkung: I.d.R. wird Verhalten von Prozessen, Systemen o.d. Uber die Zeit auf Basis von DGL modelliert, daher Was ist der Unterschied von Differentialgleichungen zu ,,regularen“/bekannten Gleichungen? Die Unbekannte ist eine Funktion und keine Variable(n) HMINE, Prof. Dr. Patrick Draheim ©HSB Beispiel: Die Abkiihlung des Heifgetrdnkes 06.01.2025 6 ifferentialgleichung — Explizit & Implizit ¢ Eine Differentialgleichung (DGL) kann in expliziter oder impliziter Form angegeben werden: Implizit: F(t, y(t), y'(0), y(t), ..) = 0 bspw.: F(t y(), (0), yy") = t?y’ +y? = Explizit: y’ = 3t + 2y ¢ Aus der expliziten Form lasst sich immer eine implizite Form umstellen e Aus der impliziten Form kann sich nur eine explizite Form umstellen lassen, wenn y‘ isoliert werden kann > Fir uns relevant: Explizite Form einer gewohnlichen Differentialgleichung HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 7 ifferentialgleichung — Homogen & Inhomogen ¢ — Ist nur die abhangige Variable und ihre Ableitungen vorhanden, so sprechen wir von einer homogenen DGL ¢ Bei einer inhomogenen DGL ist eine Stérgroe zusatzlich gegeben > Homogene DGL beschreiben Systeme, die von ihrer inneren Struktur bestimmt werden, wie z.B. Schwingungen > Inhomogene DGL beschreiben Systeme die Reaktionen auf auRere Einfllisse beachten miissen * Beispiel einer homogenen DGL: y’ = —2y. Die Anderungsrate hangt nur von y selbst ab! * Eine inhomogene DGL hat die Form y’ = f (x, y) + g(x), Beispiel: y’ = —2y + 3 - sin(x). Die Anderungsrate hangt von y sowie dem unabhangigen Term 3 - sin(x) ab! HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 8 ifferentialgleichung — Rang ¢ Eine Differentialgleichung (DGL) besitzt immer einen Rang bzw. eine Ordnung ¢ Der Rang gibt an, welche Ableitung der gesuchten Funktion y(t) die héchste in der Gleichung vorkommende ist * Explizite DGL: y"” = 3t + 2y besitzt den Rang 2 * — [.d.R. finden wir analytische Lésungen fur nicht-lineare DGLs mit Rang > 2 nicht mehr, z.B. y’"” + y’” = y + 42 oder jedwede Anwendung von trigonometrischen Funktionen ¢ Anmerkung: mit numerischen Verfahren ggf. auch problematisch aufgrund von Unstetigkeiten, Singularitaten, ... > Fur uns relevant: nicht-lineare DGLs mit Rang < 2 und lineare DGLs HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 9 Analytisches Losen nfangswertprobleme (AWP) * Gegeben einer DGL y(t) beantwortet das Anfangswertproblem, welche Konfiguration die jeweilige Konstante(n) der Differentialgleichung annehmen > Ergebnis des Anfangswertproblems ist eine konkrete Ausgestaltung von y(t) ohne vorher notwendige Konstanten * Kann y(x) analytisch nicht hergeleitet werden, so muss (auch) das AWP numerisch geldst werden HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 11 nsere Auswahl) Analytische Losungsansatze ¢ Substitutionsverfahren ¢ Vereinfachung der DGL Uber eine geeignete Substitution v(t) = ... geeignete Ableitung von y(t) ¢ Trennungsverfahren ¢ DGLder Form on = f(y) - g(t), so dass umgeformt werden kann: aly = g(t)dt ¢ Integrationsverfahren mit Faktor ¢ DGL der Form y'(t) + p(t)y(t) = q(t) wird ein Integrationsfaktor u(t) eingeftihrt um direkt integrieren zu kOnnen: ~ (uy) = w(t)q(t) via u(t) = ef POA Beispiele der Ansdtze 06.01.2025 HMINF, Prof. Dr. Patrick Draheim ©HSB Stetigkeit von Funktionen ¢ Eine Funktion ist stetig, wenn sie keine Spriinge, Liicken oder Unstetigkeiten aufweist. Dies bedeutet, das ftir jede noch so kleine Anderung der Eingabe die Anderung der Ausgabe ebenfalls beliebig klein bleibt * Die Funktion f(x) ist also stetig an der Stelle x) wenn gilt: lim f(x) = f (xo) * Beispiel: f, (x) = x” fir die Stelle xp = 2: ¢ Der tatsachliche Funktionswert ist fj (v9) = f,(2) = 4 ¢ Der Grenzwert der Funktion, wenn x gegen 2 lauft, ist ebenfalls 4: lim fix) =4 ¢ Gegenbeispiel: f2(x) = fs ’ sons fiir die Stellexy =1 * Der tatsachliche Funktionswert ist f2(%9) = f2(1) = 3 * Der Grenzwert der Funktion bewegt sich auf x? zu: lim fi(~) =1 HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 13 Satz von Peano Der Satz von Peano gibt an, ob fiir ein AWP eine Lésung existiert, in der , Nahe” eines gegebenen Punktes. Sei die DGL gegeben als: VO=fG&y), vo) =y¥o Falls: f(x,y) in einem Rechteck R = [tp — a,to + a] x [Yo — b, yo + db] stetig ist, dann existiert mindestens eine lokale Lésung y(x) in dem (Rechteck-)Intervall um ty Achtung: Der Satz von Peano sagt nichts tiber die Qualitdt der Losung aus! Das numerische Verfahren muss in der Lage sein, diese Losung auf stabile Weise zu berechnen HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 14 Satz von Picard-Lindeloff Der Satz von Picard-Lindeloff erweitert den Satz von Peano um die Lipschitz Bedingung, sodass in dem Rechteck-Intervall
+
+=== Chunk 2/2 (Length: 2033) ===
+nur eine mdgliche Losung existiert, da eine Veranderungsgrenze definiert Lipschitz-Stetigkeit / Lipschitz Bedingung: Formuliere eine strikte Anforderung an die Stetigkeit mit Beschrankung L Eine Funktion ist Lipschitz-stetig, wenn im Definitionsbereich gilt: || f(%) -f (x2)I| <L ||x, — x2|| Achtung: Auch der Satz von Picard-Lindel6ff sagt nichts tiber die Qualitat der Losung aus! Das Priifung der Sdtze numerische Verfahren muss in der Lage sein, diese Losung auf stabile Weise zu berechnen HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 15 Numerisches Lésen uler- und Heun-Verfahren Das Euler-Verfahren ist eine einfache und schnelle Methode zum numerischen L6sen von DGLs Das Euler-Verfahren hat eine geringe Genauigkeit, insbesondere bei grofen Schrittweiten, die mit der Anzahl der Schritte sich akkumuliert Yn+1 =In +h: f(t Yn) Yy: Die Approximation der Lésung zum Zeitpunkt t, h: Schrittweite und f (tn, Yn): DGL Das Heun-Verfahren verbessert die Qualitat das Euler-Verfahren, in dem es die mittlere Steigung der Schrittweite berechnet: ky = fGun)i ke = fn t+ yn +h- ky) Yn+1 = Yn + 2" (ky +k) HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 17 unge-Kutta-Verfahren Das Runge-Kutta Verfahren (ins. 4. Ordnung — ,,RK4“) ist eine der genauesten und am haufigsten verwendeten Methoden ftir die numerische Losung von DGLs Berechnung der Losung durch eine gewichtete Mittelung von Steigerungsberechnungen pro Schritt: 1 Yo+ hks ky = f (tr Yn) ky =f (t+ arynt NI > Ne] > ks =f (t+ ayn t Ky = f (tn + h, Yn + h . kz) Yo+ hk2/2 Yo+hk,/2 Ynt1 = Vn + git 2s ka +2: kg + ky) HMINF, Prof. Dr. Patrick Draheim ©HSB to to+h/2 to+h 06.01.2025 18 Osungsverfahren im Vergleich Euler Yn+1 =Wn th: f (ta Yn) O(h) Niedrig Einfach Genauigkeit Heun 1 O(h?) Mittel Genauigkeit vs Euler = Rechenaufwand vs Euler Yne1 = Yn +5 (ka + ka) ° Runge-Kutta O(h3) Hoch Genauigkeit vs Heun Rechenaufwand vs Heun Yn+1 = Yn +E" (ky + 2k2 + 2k3 + ky) Beispielrechnung & Die Verfahren in Python HMINF, Prof. Dr. Patrick Draheim ©HSB 06.01.2025 19
+

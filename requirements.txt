@@ -1,3 +1,4 @@
 genanki==0.13.0
 pdf2image==1.16.3
-pytesseract==0.3.10 
+pytesseract==0.3.10
+Pillow==10.2.0  # Required by pdf2image and pytesseract 

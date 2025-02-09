@@ -7,6 +7,10 @@ __pycache__/
 venv/
 ENV/
 
+# Environment and logs
+.env
+*.log
+
 # Anki
 decks/
 *.apkg
